@@ -10,25 +10,24 @@
     <!-- router-view -->
     <!-- tabbar -->
   <nav class="mui-bar mui-bar-tab">
-   <a class="mui-tab-item mui-active" href="#tabbar">
-    <span class="mui-icon mui-icon-home"></span>
-    <span class="mui-tab-label">首页</span>
-   </a>
-   <a class="mui-tab-item" href="#tabbar-with-chat">
-    <span class="mui-icon mui-icon-email"><span class="mui-badge">9</span></span>
-    <span class="mui-tab-label">消息</span>
-   </a>
-   <a class="mui-tab-item" href="#tabbar-with-contact">
-    <span class="mui-icon mui-icon-contact"></span>
-    <span class="mui-tab-label">通讯录</span>
-   </a>
-   <a class="mui-tab-item" href="#tabbar-with-map">
+   <router-link class="mui-tab-item" to="/data">
+    <span class="mui-icon mui-icon-extra mui-icon-extra-trend"></span>
+    <span class="mui-tab-label">数据</span>
+   </router-link>
+   <router-link class="mui-tab-item" to="/controller">
+    <span class="mui-icon mui-icon-settings"></span>
+    <span class="mui-tab-label">控制</span>
+   </router-link>
+   <router-link class="mui-tab-item" to="devices">
+    <span class="mui-icon mui-icon-extra mui-icon-extra-filter"></span>
+    <span class="mui-tab-label">设备</span>
+   </router-link>
+   <router-link class="mui-tab-item" to="setting">
     <span class="mui-icon mui-icon-gear"></span>
     <span class="mui-tab-label">设置</span>
-   </a>
+   </router-link>
   </nav>
-   <h1>123</h1>
-
+   <router-view></router-view>
   </div>
 </template>
 
