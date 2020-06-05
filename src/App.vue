@@ -18,11 +18,11 @@
     <span class="mui-icon mui-icon-settings"></span>
     <span class="mui-tab-label">控制</span>
    </router-link>
-   <router-link class="mui-tab-item" to="devices">
+   <router-link class="mui-tab-item" to="/devices">
     <span class="mui-icon mui-icon-extra mui-icon-extra-filter"></span>
     <span class="mui-tab-label">设备</span>
    </router-link>
-   <router-link class="mui-tab-item" to="setting">
+   <router-link class="mui-tab-item" to="/setting">
     <span class="mui-icon mui-icon-gear"></span>
     <span class="mui-tab-label">设置</span>
    </router-link>

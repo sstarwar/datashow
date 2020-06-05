@@ -1,80 +1,100 @@
 <template>
   <div>
-    <canvas id="myChart" width="260px" height="260px"></canvas>
+    <canvas :id="id" width="130%" height="130%">
+    </canvas>
+    <div class="datatype">{{title}}</div>
   </div>
-  <!-- <div class="h-ring">
-      <div class="ring-relative">
-        <ve-ring :data="chartData" :settings="chartSettings" :legend-visible="false"></ve-ring>
-      </div>
-  </div> -->
 </template>
-
 <script>
 const F2 = require('@antv/f2/lib/index')
-
+const Legend = require('@antv/f2/lib/plugin/legend')
 export default {
   data () {
     return {
+      id: '',
+      value: {
+        x: '1',
+        y: 70
+      }
+      // unit: '℃',
+      // title: '土壤温度'
+    }
+  },
+  props: {
+    title: {
+      type: String,
+      default: ''
+    },
+    unit: {
+      type: String
     }
   },
   methods: {
+    guid () {
+      this.id = Number(Math.random().toString().substr(3, 3) + Date.now()).toString(36)
+    },
+
     dataChart () {
-      const data = [
-        { genre: 'Sports', sold: 275 },
-        { genre: 'Strategy', sold: 115 },
-        { genre: 'Action', sold: 120 },
-        { genre: 'Shooter', sold: 350 },
-        { genre: 'Other', sold: 150 }
-      ]
+      const data = [this.value]
       const chart = new F2.Chart({
-        id: 'myChart',
-        pixelRatio: window.devicePixelRatio // 指定分辨率
+        id: this.id,
+        plugins: Legend,
+        pixelRatio: window.devicePixelRatio
       })
-      chart.source(data)
-      chart.interval().position('genre*sold').color('genre')
+      chart.source(data, {
+        y: {
+          max: 100,
+          min: 0
+        }
+      })
+      chart.axis(false)
+      chart.tooltip(false)
+      chart.coord('polar', {
+        transposed: true,
+        innerRadius: 0.9,
+        radius: 1
+      })
+      chart.guide().arc({
+        start: [0, 0],
+        end: [1, 99.98],
+        top: true, // 是否覆盖
+        style: {
+          lineWidth: 10,
+          stroke: '#aaa'
+        }
+      })
+      chart.guide().text({
+        position: ['50%', '50%'],
+        content: this.value.y.toString() + this.unit,
+        style: {
+          fill: '#CCCCC'
+          // 字体颜色
+        }
+      })
+      chart.interval()
+        .position('x*y')
+        .size(20)
+        .animate({
+          appear: {
+            duration: 1200,
+            easing: 'cubicIn'
+          }
+        })
       chart.render()
     }
+  },
+  created () {
+    this.guid()
   },
   mounted () {
     this.dataChart()
   }
 }
-//     this.chartSettings = {
-//       roseType: 'radius',
-//       dimension: 'type',
-//       metrics: 'value',
-//       label: {
-//         normal: {
-//           show: false
-//         }
-//       },
-//       radius: [
-//         '30', '55'
-//       ],
-//       offsetY: 56
-//     //   dataType: function(v){
-//     //       return v+50+'℃';
-//     //   }
-//     }
-//     return {
-//       tooltip: {
-//         trigger: 'none'
-//       },
-//       chartExtend: {
-//         legend: {
-//           show: false
-//         }
-//       },
-//       chartData: {
-//         columns: ['type', 'value'],
-//         rows: [
-//           { type: '0', value: 37.5 },
-//           { type: '1', value: 12.5 }
-//         ]
-//       }
-//     }
-//   }
-// }
 </script>
 <style scoped>
+.datatype{
+  font-size:80%;
+  padding-left: 10px;
+  text-align: center;
+}
 </style>
