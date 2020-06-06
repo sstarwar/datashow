@@ -51,7 +51,7 @@ export default {
       chart.tooltip(false)
       chart.coord('polar', {
         transposed: true,
-        innerRadius: 0.9,
+        innerRadius: 0.95,
         radius: 1
       })
       chart.guide().arc({
@@ -73,7 +73,7 @@ export default {
       })
       chart.interval()
         .position('x*y')
-        .size(20)
+        .size(15)
         .animate({
           appear: {
             duration: 1200,

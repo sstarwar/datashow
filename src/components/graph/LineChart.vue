@@ -1,7 +1,8 @@
 <template>
-  <div>
-    <canvas :id="id">
+  <div class="chartcontainer">
+    <canvas :id="id" height="200%">
     </canvas>
+    <div class="title">{{title}}</div>
     <!-- <div class="datatype">{{title}}</div> -->
   </div>
 </template>
@@ -15,19 +16,17 @@ export default {
         x: '1',
         y: 70
       }
-      // unit: '℃',
-      // title: '土壤温度'
     }
   },
-  //   props: {
-  //     title: {
-  //       type: String,
-  //       default: ''
-  //     },
-  //     unit: {
-  //       type: String
-  //     }
-  //   },
+  props: {
+    title: {
+      type: String,
+      default: ''
+    },
+    unit: {
+      type: String
+    }
+  },
   methods: {
     guid () {
       this.id = Number(Math.random().toString().substr(3, 3) + Date.now()).toString(36)
@@ -114,9 +113,11 @@ export default {
 }
 </script>
 <style scoped>
-.datatype{
+.title{
   font-size:80%;
-  padding-left: 10px;
   text-align: center;
+}
+.chartcontainer{
+    text-align:center;
 }
 </style>
