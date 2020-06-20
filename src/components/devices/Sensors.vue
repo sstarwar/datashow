@@ -1,35 +1,26 @@
 <template>
   <div>
     <div id="tabbar-with-map" class="mui-control-content">
-    <div class="title"></div>
+    <div class="title">传感器</div>
     <ul class="mui-table-view">
     <li class="mui-table-view-cell">
+        <router-link class="mui-navigate-right" to="/sensors_list">
+            <span class="mui-icon mui-icon-videocam">传感器列表</span>
+        </router-link>
+    </li>
+    <li class="mui-table-view-cell">
         <a class="mui-navigate-right">
-            新消息通知
+            <span class="mui-icon mui-icon-videocam">添加新传感器</span>
         </a>
     </li>
     <li class="mui-table-view-cell">
         <a class="mui-navigate-right">
-            隐私
+            <span class="mui-icon mui-icon-videocam">传感器类型</span>
         </a>
     </li>
     <li class="mui-table-view-cell">
         <a class="mui-navigate-right">
-            通用
-        </a>
-    </li>
-    </ul>
-    <ul class="mui-table-view" style="margin-top: 25px;">
-    <li class="mui-table-view-cell">
-        <a class="mui-navigate-right">
-            关于IOT-538
-        </a>
-    </li>
-    </ul>
-    <ul class="mui-table-view" style="margin-top: 25px;">
-    <li class="mui-table-view-cell">
-        <a style="text-align: center;color: #FF3B30;">
-            退出登录
+            <span class="mui-icon mui-icon-videocam">添加新的传感器类型</span>
         </a>
     </li>
     </ul>

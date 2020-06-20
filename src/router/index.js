@@ -8,32 +8,125 @@ import LineChartContainer1 from '../components/linechartcontainer/LineChartConta
 import LineChartContainer2 from '../components/linechartcontainer/LineChartContainer2.vue'
 import LineChartContainer3 from '../components/linechartcontainer/LineChartContainer3.vue'
 import LineChartContainer4 from '../components/linechartcontainer/LineChartContainer4.vue'
+import Rooms from '../components/devices/Rooms.vue'
+import RoomsList from '../components/devices/Rooms/RoomsList.vue'
+import RoomInfo from '../components/devices/Rooms/RoomInfo.vue'
+import Shelves from '../components/devices/Shelves.vue'
+import ShelvesList from '../components/devices/Shelves/ShelvesList.vue'
+import ShelfInfo from '../components/devices/Shelves/ShelfInfo.vue'
 
+import Sensors from '../components/devices/Sensors.vue'
+import SensorsList from '../components/devices/Sensors/SensorsList.vue'
+import SensorInfo from '../components/devices/Sensors/SensorInfo.vue'
+
+import Relays from '../components/devices/Relays.vue'
+import RelaysList from '../components/devices/Relays/RelaysList.vue'
+import RelaysInfo from '../components/devices/Relays/RelaysInfo.vue'
+
+
+import ManureDevices from '../components/devices/ManureDevices.vue'
+import MainInterface from '../components/MainInterface.vue'
 Vue.use(VueRouter)
 const routes = [
-  { path: '/', redirect: '/data/linechart1' },
   {
-    path: '/data',
+    path: '/',
+    component: MainInterface,
     redirect: '/data/linechart1',
-    component: DataContainer,
     children: [
       {
-        path: 'linechart1', component: LineChartContainer1
+        path: 'data',
+        component: DataContainer,
+        redirect: '/data/linechart1',
+        children: [
+          {
+            path: 'linechart1',
+            component: LineChartContainer1
+          },
+          {
+            path: 'linechart2',
+            component: LineChartContainer2
+          },
+          {
+            path: 'linechart3',
+            component: LineChartContainer3
+          },
+          {
+            path: 'linechart4',
+            component: LineChartContainer4
+          }
+        ]
       },
       {
-        path: 'linechart2', component: LineChartContainer2
+        path: 'controller',
+        component: ControllerContainer
       },
       {
-        path: 'linechart3', component: LineChartContainer3
+        path: 'devices',
+        component: DeviceContainer
       },
       {
-        path: 'linechart4', component: LineChartContainer4
+        path: 'rooms',
+        component: Rooms
+      },
+      {
+        path: 'rooms_list',
+        component: RoomsList
+      },
+      {
+        path: 'room_info',
+        name: 'room_info',
+        component: RoomInfo
+      },
+      {
+        path: 'shelves',
+        component: Shelves
+      },
+      {
+        path: 'shelves_list',
+        component: ShelvesList
+      },
+      {
+        path: 'shelf_info',
+        name: 'shelf_info',
+        component: ShelfInfo
+      },
+      {
+        path: 'sensors',
+        component: Sensors
+      },
+      {
+        path: 'sensors_list',
+        component: SensorsList
+      },
+      {
+        path: 'sensor_info',
+        name: 'sensor_info',
+        component: SensorInfo
+      },
+      {
+        path: 'relays',
+        component: Relays
+      },
+      {
+        path: 'relays_list',
+        component: RelaysList
+      },
+      {
+        path: 'relays_info',
+        name: 'relays_info',
+        component: RelaysInfo
+      },
+      {
+        path: 'manure_devices',
+        component: ManureDevices
+      },
+      {
+        path: 'setting',
+        component: SettingContainer
       }
     ]
-  },
-  { path: '/controller', component: ControllerContainer },
-  { path: '/devices', component: DeviceContainer },
-  { path: '/setting', component: SettingContainer }
+  }
+
   // {
   //   path: '/about',
   //   name: 'About',

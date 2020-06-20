@@ -11,11 +11,7 @@ const F2 = require('@antv/f2/lib/index')
 export default {
   data () {
     return {
-      id: '',
-      value: {
-        x: '1',
-        y: 70
-      }
+      id: ''
     }
   },
   props: {
@@ -25,6 +21,39 @@ export default {
     },
     unit: {
       type: String
+    },
+    value: {
+      type: Array,
+      default: () => {
+        return [{
+          time: '2016-08-08 00:00:00',
+          tem: 10
+        }, {
+          time: '2016-08-08 00:10:00',
+          tem: 22
+        }, {
+          time: '2016-08-08 00:30:00',
+          tem: 20
+        }, {
+          time: '2016-08-09 00:35:00',
+          tem: 26
+        }, {
+          time: '2016-08-09 01:00:00',
+          tem: 20
+        }, {
+          time: '2016-08-09 01:20:00',
+          tem: 26
+        }, {
+          time: '2016-08-10 01:40:00',
+          tem: 28
+        }, {
+          time: '2016-08-10 02:00:00',
+          tem: 20
+        }, {
+          time: '2016-08-10 02:20:00',
+          tem: 18
+        }]
+      }
     }
   },
   methods: {
@@ -33,35 +62,7 @@ export default {
     },
 
     dataChart () {
-      const data = [{
-        time: '2016-08-08 00:00:00',
-        tem: 10
-      }, {
-        time: '2016-08-08 00:10:00',
-        tem: 22
-      }, {
-        time: '2016-08-08 00:30:00',
-        tem: 20
-      }, {
-        time: '2016-08-09 00:35:00',
-        tem: 26
-      }, {
-        time: '2016-08-09 01:00:00',
-        tem: 20
-      }, {
-        time: '2016-08-09 01:20:00',
-        tem: 26
-      }, {
-        time: '2016-08-10 01:40:00',
-        tem: 28
-      }, {
-        time: '2016-08-10 02:00:00',
-        tem: 20
-      }, {
-        time: '2016-08-10 02:20:00',
-        tem: 18
-      }]
-
+      const data = this.value
       const chart = new F2.Chart({
         id: this.id,
         pixelRatio: window.devicePixelRatio
@@ -70,8 +71,8 @@ export default {
       const defs = {
         time: {
           type: 'timeCat',
-          mask: 'MM/DD',
-          tickCount: 3,
+          mask: 'HH:mm',
+          tickCount: 5,
           range: [0, 1]
         },
         tem: {
@@ -102,6 +103,14 @@ export default {
           lineWidth: 1
         })
       chart.render()
+    }
+  },
+  watch: {
+    objVal: {
+      handler (val, oldval) {
+        this.dataChart()
+      },
+      deep: true
     }
   },
   created () {

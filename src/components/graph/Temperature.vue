@@ -6,16 +6,13 @@
   </div>
 </template>
 <script>
+// 这是环形图的模板，名字起得有点问题
 const F2 = require('@antv/f2/lib/index')
 const Legend = require('@antv/f2/lib/plugin/legend')
 export default {
   data () {
     return {
-      id: '',
-      value: {
-        x: '1',
-        y: 70
-      }
+      id: ''
       // unit: '℃',
       // title: '土壤温度'
     }
@@ -27,6 +24,9 @@ export default {
     },
     unit: {
       type: String
+    },
+    value: {
+      type: Object
     }
   },
   methods: {
@@ -83,10 +83,21 @@ export default {
       chart.render()
     }
   },
+  watch: {
+    value: {
+      handler (val, oldval) {
+        this.dataChart()
+      },
+      deep: true
+    }
+  },
   created () {
     this.guid()
   },
   mounted () {
+    this.dataChart()
+  },
+  beforeUpdate () {
     this.dataChart()
   }
 }

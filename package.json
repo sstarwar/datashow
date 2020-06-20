@@ -9,8 +9,10 @@
   },
   "dependencies": {
     "@antv/f2": "^3.6.4-beta.7",
+    "axios": "^0.19.2",
     "core-js": "^3.6.5",
     "echarts": "^4.8.0",
+    "element-ui": "^2.13.2",
     "mint-ui": "^2.2.13",
     "v-charts": "^1.19.0",
     "vue": "^2.6.11",

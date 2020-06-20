@@ -1,35 +1,31 @@
 <template>
   <div>
     <div id="tabbar-with-map" class="mui-control-content">
-    <div class="title"></div>
+    <div class="title">温室管理</div>
     <ul class="mui-table-view">
     <li class="mui-table-view-cell">
+        <router-link class="mui-navigate-right" to="/rooms_list">
+            <span class="mui-icon-extra mui-icon-extra-classroom">温室列表</span>
+        </router-link>
+    </li>
+    <li class="mui-table-view-cell">
         <a class="mui-navigate-right">
-            新消息通知
+            <span class="mui-icon-extra mui-icon-extra-classroom">添加新温室</span>
         </a>
     </li>
     <li class="mui-table-view-cell">
         <a class="mui-navigate-right">
-            隐私
+            <span class="mui-icon-extra mui-icon-extra-classroom">新设备发现</span>
         </a>
     </li>
     <li class="mui-table-view-cell">
         <a class="mui-navigate-right">
-            通用
+            <span class="mui-icon-extra mui-icon-extra-classroom">温室最新概况</span>
         </a>
     </li>
-    </ul>
-    <ul class="mui-table-view" style="margin-top: 25px;">
-    <li class="mui-table-view-cell">
+        <li class="mui-table-view-cell">
         <a class="mui-navigate-right">
-            关于IOT-538
-        </a>
-    </li>
-    </ul>
-    <ul class="mui-table-view" style="margin-top: 25px;">
-    <li class="mui-table-view-cell">
-        <a style="text-align: center;color: #FF3B30;">
-            退出登录
+            <span class="mui-icon-extra mui-icon-extra-classroom">全局温室预览</span>
         </a>
     </li>
     </ul>
