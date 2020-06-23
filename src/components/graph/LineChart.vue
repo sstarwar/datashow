@@ -11,10 +11,15 @@ const F2 = require('@antv/f2/lib/index')
 export default {
   data () {
     return {
-      id: ''
+      id: '',
+      mask: 'HH:mm'
     }
   },
   props: {
+    x_type: {
+      type: String,
+      default: '01'
+    },
     title: {
       type: String,
       default: ''
@@ -71,8 +76,8 @@ export default {
       const defs = {
         time: {
           type: 'timeCat',
-          mask: 'HH:mm',
-          tickCount: 5,
+          mask: this.mask,
+          tickCount: 3,
           range: [0, 1]
         },
         tem: {
@@ -81,6 +86,7 @@ export default {
           alias: '日均温度'
         }
       }
+      console.log(defs.time.mask)
       chart.source(data, defs)
       chart.axis('time', {
         label: function label (text, index, total) {
@@ -106,18 +112,31 @@ export default {
     }
   },
   watch: {
-    objVal: {
+    value: {
       handler (val, oldval) {
         this.dataChart()
+      },
+      deep: true
+    },
+    x_type: {
+      handler (val, oldval) {
+        console.log(val)
+        if (val === '01') this.mask = 'DD:HH:mm'
+        else if (val === '02') this.mask = 'MM:DD:HH'
+        else this.mask = 'YYYY:MM:DD'
+        this.dataChart()
+        console.log('a')
       },
       deep: true
     }
   },
   created () {
     this.guid()
+    console.log(this.x_type)
   },
   mounted () {
     this.dataChart()
+    console.log('b')
   }
 }
 </script>

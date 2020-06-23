@@ -6,6 +6,8 @@
               <option value="01">当前温室：水肥温室</option>
               <option value="02">当前温室：基质肥温室</option>
             </select>
+            <!-- <button id='showUserPicker' class="mui-btn mui-btn-block" type='button'>一级选择示例 ...</button>
+            <div id='userResult' class="ui-alert"></div> -->
           </div>
         </div>
         <div class="mui-row">
@@ -44,6 +46,7 @@
             <div class="mui-col-sm-1 mui-col-xs-1">
             </div>
         </div>
+        <rout-link>
         <div class="mui-row">
             <div class="mui-col-sm-1 mui-col-xs-1 border">
             </div>
@@ -53,11 +56,53 @@
             <div class="mui-col-sm-1 mui-col-xs-1 border">
             </div>
         </div>
+        </rout-link>
     </div>
 </template>
 <script>
-
 import temperature from '../graph/Temperature'
+
+// var userPicker = new $.PopPicker()
+// userPicker.setData([{
+//   value: 'ywj',
+//   text: '董事长 叶文洁'
+// }, {
+//   value: 'aaa',
+//   text: '总经理 艾AA'
+// }, {
+//   value: 'lj',
+//   text: '罗辑'
+// }, {
+//   value: 'ymt',
+//   text: '云天明'
+// }, {
+//   value: 'shq',
+//   text: '史强'
+// }, {
+//   value: 'zhbh',
+//   text: '章北海'
+// }, {
+//   value: 'zhy',
+//   text: '庄颜'
+// }, {
+//   value: 'gyf',
+//   text: '关一帆'
+// }, {
+//   value: 'zhz',
+//   text: '智子'
+// }, {
+//   value: 'gezh',
+//   text: '歌者'
+// }])
+// var showUserPickerButton = doc.getElementById('showUserPicker')
+// var userResult = doc.getElementById('userResult')
+// showUserPickerButton.addEventListener('tap', function (event) {
+//   userPicker.show(function (items) {
+//     userResult.innerText = JSON.stringify(items[0])
+//     // 返回 false 可以阻止选择框的关闭
+//     // return false;
+//   })
+// }, false)
 
 export default {
   data () {
@@ -77,7 +122,7 @@ export default {
       },
       shelve_num: {
         x: '1',
-        y: 3
+        y: 5
       },
       temperature_series: [],
       co2_series: [],
@@ -147,8 +192,8 @@ export default {
           }
 
           // 花架数量
-          var shelves = JSON.parse(res.data.shelves)
-          console.log(shelves)
+          this.shelve_num.y = JSON.parse(res.data.shelves_num)
+          console.log(this.shelve_num.y)
         })
     }
   },
@@ -158,12 +203,35 @@ export default {
   },
   mounted () {
     console.log('mounted')
-    this.mui.alert('aaa')
   },
   watch: {
     room: {
       handler (val, oldval) {
         this.getdata()
+      },
+      deep: true
+    },
+    temperature_latest: {
+      handler (val, oldval) {
+        if (val.y > 20) {
+          this.mui.alert('空气温度过高')
+        }
+      },
+      deep: true
+    },
+    humidty_latest: {
+      handler (val, oldval) {
+        if (val.y > 50) {
+          this.mui.alert('土壤湿度过高')
+        }
+      },
+      deep: true
+    },
+    co2_latest: {
+      handler (val, oldval) {
+        if (val.y > 700) {
+          this.mui.alert('二氧化碳浓度过高')
+        }
       },
       deep: true
     }

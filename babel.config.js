@@ -10,4 +10,11 @@ module.exports = {
       }
     ]
   ]
+  // ],
+  // ignore: [
+  //   './src/lib/mui/js/mui.js',
+  //   './src/lib/mui/js/mui.min.js',
+  //   './src/lib/mui/js/mui.picker.js',
+  //   './src/lib/mui/js/mui.poppicker.js'
+  // ]
 }

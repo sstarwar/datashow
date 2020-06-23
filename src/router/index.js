@@ -23,9 +23,11 @@ import Relays from '../components/devices/Relays.vue'
 import RelaysList from '../components/devices/Relays/RelaysList.vue'
 import RelaysInfo from '../components/devices/Relays/RelaysInfo.vue'
 
-
 import ManureDevices from '../components/devices/ManureDevices.vue'
 import MainInterface from '../components/MainInterface.vue'
+
+import DataDetail from '../components/graph/DataDetail.vue'
+import VideoPlayerContainer from '../components/VideoPlayerContainer.vue'
 Vue.use(VueRouter)
 const routes = [
   {
@@ -55,6 +57,14 @@ const routes = [
             component: LineChartContainer4
           }
         ]
+      },
+      {
+        path: 'data_detail',
+        component: DataDetail
+      },
+      {
+        path: 'video_player',
+        component: VideoPlayerContainer
       },
       {
         path: 'controller',
